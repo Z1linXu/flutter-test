@@ -1,5 +1,8 @@
 import 'package:first_app/styled_text.dart';
 import 'package:flutter/material.dart';
+import 'dart:math';
+
+final randomizer = Random();
 
 class DiceRoller extends StatefulWidget {
   const DiceRoller({super.key});
@@ -10,11 +13,12 @@ class DiceRoller extends StatefulWidget {
 }
 
 class _DiceRollerState extends State<DiceRoller> {
+  var currentDiceRoll = 1;
   var activeDiceImage = 'assets/images/dice-2.png';
   void rollDice() {
     //TODO
     setState(() {
-      activeDiceImage = 'assets/images/dice-4.png';
+      currentDiceRoll = randomizer.nextInt(6) + 1;
     });
   }
 
@@ -26,7 +30,7 @@ class _DiceRollerState extends State<DiceRoller> {
       children: [
         StyledText('hello Zilin!', color: Color.fromARGB(255, 0, 0, 0)),
         Image.asset(
-          activeDiceImage,
+          'assets/images/dice-$currentDiceRoll.png',
           width: 200,
         ),
         const SizedBox(
